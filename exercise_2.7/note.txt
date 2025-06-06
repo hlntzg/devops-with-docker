@@ -1,0 +1,10 @@
+How to remove Database directory (Without sudo):
+Use Docker to Delete It: 
+- You can run a container as root inside Docker to remove the folder:
+docker run --rm -v "$PWD:/mnt" alpine sh -c "rm -rf /mnt/database"
+
+Use a Docker Container to Change Permissions:
+- Just unlock it (instead of deleting):
+docker run --rm -v "$PWD:/mnt" alpine sh -c "chmod -R 777 /mnt/database"
+- If you still want to delete after:
+rm -rf ./database 

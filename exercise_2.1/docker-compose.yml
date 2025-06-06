@@ -1,0 +1,7 @@
+services: # Define all the services (containers) that make up the application.
+  web: # This is the name of the service.
+    image: devopsdockeruh/simple-web-service  # The image to use. Docker will pull this from Docker Hub if it's not already downloaded.
+    volumes: # Mount a volume from the local filesystem into the container.
+      - ./logs:/usr/src/app/text.log  # This means: The file `logs` in the current directory (./logs) 
+									  # will be mounted to the file path `/usr/src/app/text.log` inside the container.
+

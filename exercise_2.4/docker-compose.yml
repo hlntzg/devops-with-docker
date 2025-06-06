@@ -1,0 +1,27 @@
+services:
+  frontend:
+    build:
+      context: ./example-frontend
+      args:
+        - REACT_APP_BACKEND_URL=http://localhost:8080
+    ports:
+      - "5000:5000"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./example-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - REQUEST_ORIGIN=http://localhost:5000
+      - REDIS_HOST=redis
+      - PORT=8080
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  redis:
+    image: redis:6
+    restart: unless-stopped
